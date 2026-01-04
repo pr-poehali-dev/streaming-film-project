@@ -11,11 +11,11 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const navItems = [
-    { id: 'home', label: 'Главная', icon: 'Home' },
-    { id: 'movies', label: 'Фильмы', icon: 'Film' },
-    { id: 'series', label: 'Сериалы', icon: 'Tv' },
-    { id: 'genres', label: 'Жанры', icon: 'Grid3x3' },
-    { id: 'search', label: 'Поиск', icon: 'Search' },
+    { id: 'home', label: 'Главная', icon: 'Home', path: '/' },
+    { id: 'movies', label: 'Фильмы', icon: 'Film', path: '/' },
+    { id: 'series', label: 'Сериалы', icon: 'Tv', path: '/' },
+    { id: 'genres', label: 'Жанры', icon: 'Grid3x3', path: '/' },
+    { id: 'search', label: 'Поиск', icon: 'Search', path: '/search' },
   ];
 
   const featuredMovie = {
@@ -54,7 +54,10 @@ const Index = () => {
                 {navItems.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => setActiveSection(item.id)}
+                    onClick={() => {
+                      setActiveSection(item.id);
+                      if (item.path) navigate(item.path);
+                    }}
                     className={`flex items-center gap-2 transition-colors ${
                       activeSection === item.id
                         ? 'text-primary'
