@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -127,7 +129,7 @@ const Index = () => {
               </p>
               
               <div className="flex gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => navigate('/movie/1')}>
                   <Icon name="Play" size={20} className="mr-2" />
                   Смотреть
                 </Button>
@@ -155,6 +157,7 @@ const Index = () => {
                 key={movie.id}
                 className="group cursor-pointer animate-scale-in"
                 style={{ animationDelay: `${movie.id * 50}ms` }}
+                onClick={() => navigate('/movie/1')}
               >
                 <div className="relative aspect-[2/3] bg-accent rounded-lg overflow-hidden mb-3 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-primary/20">
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -192,6 +195,7 @@ const Index = () => {
               <div
                 key={movie.id}
                 className="group cursor-pointer bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+                onClick={() => navigate('/movie/1')}
               >
                 <div className="relative aspect-video bg-accent">
                   <div className="absolute inset-0 flex items-center justify-center">
